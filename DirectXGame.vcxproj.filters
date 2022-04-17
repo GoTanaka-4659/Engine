@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="シェーダーファイル">
+      <UniqueIdentifier>{7e5584a5-2895-4181-9eaf-f65622106b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{9f5f2885-740c-4944-9416-1b662c5faf54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\DirectX">
+      <UniqueIdentifier>{6cb8bb6b-4a16-4466-9fec-94f6d08d73ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\DirectX\DirectXCommon">
+      <UniqueIdentifier>{c4a49e7f-4dca-4cac-a6d4-417c0fff1248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Input">
+      <UniqueIdentifier>{6fa55f6c-2238-40e9-8554-f1dcc8d62f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\WinApp">
+      <UniqueIdentifier>{3d097acc-9326-4dad-b867-3f74b603cdd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{febf0f55-db3c-48d6-a7ed-f96879e154ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Colission">
+      <UniqueIdentifier>{d81cb8c8-ed54-47e9-acce-9c67ef51bf08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Audio">
+      <UniqueIdentifier>{3b3a1722-2132-4829-9e9e-dcd49d4be5e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Sprite">
+      <UniqueIdentifier>{7a01d66f-ec30-4d7c-a164-1665d7dc8a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Sprite\DebugText">
+      <UniqueIdentifier>{996a60d9-4654-44f7-8bc8-b61532b5f378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj3d">
+      <UniqueIdentifier>{824daba9-5798-41bc-81b3-8da18dcf2983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj3d\Model">
+      <UniqueIdentifier>{4138c7b3-6bf4-45ed-9a72-bcd1f69ff75f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="未完成">
+      <UniqueIdentifier>{f2745e6e-df1d-4990-b4cb-1ce7244b3597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="未完成\Camera">
+      <UniqueIdentifier>{83d241df-a702-4ccc-a647-d183b7200577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="未完成\Light">
+      <UniqueIdentifier>{95bc1236-c346-4abf-a0b7-9cd5066419e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Sprite\Sprite">
+      <UniqueIdentifier>{b11e4f20-6cac-4f05-91f3-d25b0abe6888}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="BasicPS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="BasicVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="SpriteVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="SpritePS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Base\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="WinApp.cpp">
+      <Filter>Base\WinApp</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXCommon.cpp">
+      <Filter>Base\DirectX\DirectXCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3d.cpp">
+      <Filter>Game\Obj3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Game\Obj3d\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugtext.cpp">
+      <Filter>Game\Sprite\DebugText</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Game\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>未完成\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="LightGroup.cpp">
+      <Filter>未完成\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>未完成\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionPrimitive.cpp">
+      <Filter>Game\Colission</Filter>
+    </ClCompile>
+    <ClCompile Include="Collsion.cpp">
+      <Filter>Game\Colission</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>未完成</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Game\Sprite\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteCommon.cpp">
+      <Filter>Game\Sprite\Sprite</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Basic.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+    <None Include="Sprite.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Input.h">
+      <Filter>Base\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="WinApp.h">
+      <Filter>Base\WinApp</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXCommon.h">
+      <Filter>Base\DirectX\DirectXCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3d.h">
+      <Filter>Game\Obj3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Game\Obj3d\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PipelineSet.h">
+      <Filter>Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugtext.h">
+      <Filter>Game\Sprite\DebugText</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Game\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>未完成\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="LightGroup.h">
+      <Filter>未完成\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>未完成\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Collsion.h">
+      <Filter>Game\Colission</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionPrimitive.h">
+      <Filter>Game\Colission</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>未完成</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Game\Sprite\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteCommon.h">
+      <Filter>Game\Sprite\Sprite</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
