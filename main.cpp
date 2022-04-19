@@ -17,9 +17,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	game.Initilize();
 
-
-
-
 	//// 頂点データ構造体
 	//struct Vertex
 	//{

@@ -184,6 +184,7 @@
     <ClCompile Include="Collsion.cpp" />
     <ClCompile Include="Debugtext.cpp" />
     <ClCompile Include="DirectXCommon.cpp" />
+    <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LightGroup.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Collsion.h" />
     <ClInclude Include="Debugtext.h" />
     <ClInclude Include="DirectXCommon.h" />
+    <ClInclude Include="Framework.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LightGroup.h" />
