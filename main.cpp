@@ -4,8 +4,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <xaudio2.h>
-#pragma comment(lib,"xaudio2.lib")
+
 
 #include "Input.h"
 #include "WinApp.h"
@@ -14,7 +13,6 @@
 #include "SpriteCommon.h"
 #include "Sprite.h"
 #include "Debugtext.h"
-#include "Audio.h"
 
 using namespace DirectX;
 using namespace Microsoft::WRL;
@@ -37,7 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Input *input = nullptr;
 	DirectXCommon *dxCommon = nullptr;
 	SpriteCommon *spriteCommon = nullptr;
-	Audio *audio = nullptr;
+
 	DebugText *debugText = nullptr;
 
 	//WinAppの初期化
@@ -64,14 +62,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	spriteCommon->LoadTexture(debugTextTexNumber, L"Resources/debugfont.png");
 	// デバッグテキスト初期化
 	debugText->Initialize(spriteCommon, debugTextTexNumber);
-
-	//オーディオの初期化
-	audio = new Audio();
-	audio->Initilize();
-	// 音声読み込み
-	audio->LoadWave("Resources/Alarm01.wav");
-	// 音声再生
-	audio->PlayWave("Resources/Alarm01.wav");
 
 	// DirectX初期化処理　ここまで
 #pragma endregion DirectX初期化処理
@@ -257,7 +247,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//オブジェクトにモデルを紐づけ
 	object3d->SetModel(model);
 	object3d->SetPosition({ 100,-10,0 });
-	
+
 
 
 	// スプライト共通テクスチャ読み込み
@@ -267,38 +257,52 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	std::vector<Sprite *>sprites;
 
 	// スプライトの生成
-	for (int i = 0; i < 1; i++)
-	{
-		int texNumber = rand() % 2;
-		Sprite *sprite = Sprite::Create(spriteCommon, texNumber, { 0,0 }, false, false);
+	/*for (int i = 0; i < 1; i++)
+	{*/
+	int texNumber = rand() % 2;
+	Sprite *sprite = Sprite::Create(spriteCommon, texNumber, { 0,0 }, false, false);
 
-		// スプライトの座標変更
-		sprite->SetPosition({ (float)(rand() % 1280),(float)(rand() % 720),0 });
-		//sprite->SetRotation((float)(rand() % 360));
-		sprite->SetSize({ (float)(rand() % 400) ,(float)(rand() % 100) });
-		
-		
-		// 頂点バッファに反映
-		sprite->TransferVertexBuffer();
+	// スプライトの座標変更
+	sprite->SetPosition({ (float)(rand() % 1280),(float)(rand() % 720),0 });
+	//sprite->SetRotation((float)(rand() % 360));
+	sprite->SetSize({ (float)(rand() % 400) ,(float)(rand() % 100) });
 
-		sprites.push_back(sprite);
-		sprite->SetPosition({ 500,300,0 });
-	}
 
-	
+	// 頂点バッファに反映
+	sprite->TransferVertexBuffer();
+
+	sprites.push_back(sprite);
+	sprite->SetPosition({ 0,650,0 });
+	//}
+
+
 
 
 #pragma endregion 描画初期化処理
 
 	int counter = 0; // アニメーションの経過時間カウンター
 
+	//座標
+	float x = 300, y = 0;
+	//初速度
+	float v0 = 10;
+	float vy = 0;
+	float vx = v0;
+	//重力
+	float g = 9.8f / 60;
+
+	float time = 0.001;
+	bool Flag = false;
 	while (true)  // ゲームループ
 	{
 #pragma region ウィンドウメッセージ処理
-	
+
 		//Windowsのメッセージ処理
 		if (winApp->ProcessMessage()) {
 			//ゲームを抜ける
+			break;
+		}
+		if (input->PushKey(DIK_ESCAPE)) {
 			break;
 		}
 #pragma endregion ウィンドウメッセージ処理
@@ -314,31 +318,34 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		input->Update();
 
 		// 座標操作
-		if (input->PushKey(DIK_UP) || input->PushKey(DIK_DOWN) || input->PushKey(DIK_RIGHT) || input->PushKey(DIK_LEFT))
+
+		if (input->PushKey(DIK_R))
 		{
-			//if (input->PushKey(DIK_UP)) { object3d->SetPosition(1); }
-			//else if (input->PushKey(DIK_DOWN)) { object3ds[0].position.y -= 1.0f; }
-			//if (input->PushKey(DIK_RIGHT)) { object3ds[0].position.x += 1.0f; }
-			//else if (input->PushKey(DIK_LEFT)) { object3ds[0].position.x -= 1.0f; }
+			Flag = false;
+			x = 000;
+			y = 650;
+			vy = 0;
+			vx = 0;
 		}
 
-
-		if (input->PushKey(DIK_D) || input->PushKey(DIK_A))
+		if (input->PushKey(DIK_SPACE))
 		{
-			if (input->PushKey(DIK_D)) { angle += XMConvertToRadians(1.0f); }
-			else if (input->PushKey(DIK_A)) { angle -= XMConvertToRadians(1.0f); }
-
-			// angleラジアンだけY軸まわりに回転。半径は-100
-			eye.x = -100 * sinf(angle);
-			eye.z = -100 * cosf(angle);
-			matView = XMMatrixLookAtLH(XMLoadFloat3(&eye), XMLoadFloat3(&target), XMLoadFloat3(&up));
+			Flag = true;
 		}
 
+		if (Flag == true) {
+			vy += g;
+			//vx += v0;
+		}
+		//y += vy;
+		x += vx;
+		sprite->SetPosition({ x,y,0 });
 
-	   // X座標,Y座標を指定して表示
-		//debugText->Print("Hello,DirectX!!", 200, 100);
-		// X座標,Y座標,縮尺を指定して表示
-		debugText->Print("debugText", 200, 200, 2.0f);
+
+		// X座標,Y座標を指定して表示
+		 //debugText->Print("Hello,DirectX!!", 200, 100);
+		 // X座標,Y座標,縮尺を指定して表示
+		debugText->Print("Space = demo  R = Reset", 0, 0, 2.0f);
 
 		// GPU上のバッファに対応した仮想メモリを取得
 		Vertex *vertMap = nullptr;
@@ -364,7 +371,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		//3dオブジェクト描画前処理
 		Object3d::PreDraw(dxCommon->GetCmdList());
 		//3dオブジェクトの描画
-		object3d->Draw();
+		//object3d->Draw();
 
 		//3dオブジェクト描画後処理
 		Object3d::PostDraw();
@@ -395,12 +402,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		delete sprite;
 	}
 	sprites.clear();
-	//オーディオクラス開放
-	audio->Finalize();
-	delete audio;
-
-	
-
 #pragma region WindowsAPI後始末
 
 	//WindowsAPIの終了処理

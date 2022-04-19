@@ -220,9 +220,9 @@ void DirectXCommon::PreDraw()
 	// 深度ステンシルビュー用デスクリプタヒープのハンドルを取得
 	CD3DX12_CPU_DESCRIPTOR_HANDLE dsvH = CD3DX12_CPU_DESCRIPTOR_HANDLE(dsvHeap->GetCPUDescriptorHandleForHeapStart());
 	cmdList->OMSetRenderTargets(1, &rtvH, false, &dsvH);
-
+	//背景
 	//                     R     G     B    A
-	float clearColor[] = { 0.1f,0.25f, 0.5f,0.0f };
+	float clearColor[] = { 0.25f,0.25f, 0.25f,0.0f };
 	cmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
 	cmdList->ClearDepthStencilView(dsvH, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 
