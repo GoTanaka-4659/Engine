@@ -283,13 +283,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	int counter = 0; // アニメーションの経過時間カウンター
 
 	//座標
-	float x = 300, y = 0;
+	float x = 0, y = 650;
 	//初速度
-	float v0 = 10;
+	float v0 = 0;
 	float vy = 0;
 	float vx = v0;
 	//重力
 	float g = 9.8f / 60;
+	float t = 1;
 
 	float time = 0.001;
 	bool Flag = false;
@@ -324,8 +325,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			Flag = false;
 			x = 000;
 			y = 650;
+			v0 = 5;
 			vy = 0;
-			vx = 0;
+			vx = v0;
+			t = 1;
 		}
 
 		if (input->PushKey(DIK_SPACE))
@@ -335,10 +338,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		if (Flag == true) {
 			vy += g;
-			//vx += v0;
+			//x += vx;
 		}
-		//y += vy;
-		x += vx;
+		y -= vy;
 		sprite->SetPosition({ x,y,0 });
 
 
