@@ -261,6 +261,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	{*/
 	int texNumber = rand() % 2;
 	Sprite *sprite = Sprite::Create(spriteCommon, texNumber, { 0,0 }, false, false);
+	Sprite *sprite = Sprite::Create(spriteCommon, texNumber, { 0,0 }, false, false);
 
 	// スプライトの座標変更
 	sprite->SetPosition({ (float)(rand() % 1280),(float)(rand() % 720),0 });
@@ -314,6 +315,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		object3d->Update();
 		for (auto &sprite : sprites) {
 			sprite->Update();
+			sprite->SetPosition({ x,y,0 });
 		}
 
 		input->Update();
@@ -341,8 +343,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			//x += vx;
 		}
 		y -= vy;
-		sprite->SetPosition({ x,y,0 });
-
+		
 
 		// X座標,Y座標を指定して表示
 		 //debugText->Print("Hello,DirectX!!", 200, 100);
