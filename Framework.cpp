@@ -48,3 +48,55 @@ void Framework::Initilize()
 	object3d->SetModel(model);
 	object3d->SetPosition({ 100,-10,0 });
 }
+
+void Framework::Finalize()
+{
+	//デバッグテキスト解放
+	debugText->Finalize();
+	delete debugText;
+	//スプライトクラス解放
+	delete spriteCommon;
+
+	//オーディオクラス開放
+	audio->Finalize();
+	delete audio;
+	//DirectX解放
+	delete dxCommon;
+	//WindowsAPIの終了処理
+	winApp->Finalize();
+	//WindowsAPIの解放
+	delete winApp;
+	//入力解放
+	delete input;
+
+}
+
+void Framework::Update()
+{
+	//Windowsのメッセージ処理
+	if (winApp->ProcessMessage()) {
+		//ゲームを抜ける
+		endFlag = true;
+		return;
+	}
+	//入力更新
+	input->Update();
+	//3dオブジェクト更新
+	object3d->Update();
+}
+
+void Framework::Run()
+{
+	Initilize();
+
+	while (true)  // ゲームループ
+	{
+		Update();
+		if (endFlag) {
+			break;
+		}
+		Draw();
+	}
+	//ゲームの終了
+	Finalize();
+}

@@ -2,7 +2,9 @@
 
 void MasterGame::Initilize()
 {
-	
+	//基底クラスの初期化
+	Framework::Initilize();
+
 	// スプライト共通テクスチャ読み込み
 	spriteCommon->LoadTexture(0, L"Resources/Gorushi.png");
 	spriteCommon->LoadTexture(1, L"Resources/Gorushi.png");
@@ -31,61 +33,24 @@ void MasterGame::Initilize()
 
 void MasterGame::Update()
 {
-
-	//Windowsのメッセージ処理
-	if (winApp->ProcessMessage()) {
-		//ゲームを抜ける
-		endFlag = true;
-		return;
-	}
+	//基底クラスの更新
+	Framework::Update();
 
 	// DirectX毎フレーム処理　ここから
 	//3dオブジェクト更新
-	object3d->Update();
+	//object3d->Update();
 	for (auto &sprite : sprites) {
 		sprite->Update();
 	}
 
-	input->Update();
-
 	// 座標操作
 	if (input->PushKey(DIK_UP) || input->PushKey(DIK_DOWN) || input->PushKey(DIK_RIGHT) || input->PushKey(DIK_LEFT))
 	{
-		//if (input->PushKey(DIK_UP)) { object3d->SetPosition(1); }
-		//else if (input->PushKey(DIK_DOWN)) { object3ds[0].position.y -= 1.0f; }
-		//if (input->PushKey(DIK_RIGHT)) { object3ds[0].position.x += 1.0f; }
-		//else if (input->PushKey(DIK_LEFT)) { object3ds[0].position.x -= 1.0f; }
+
 	}
 
 
-	//if (input->PushKey(DIK_D) || input->PushKey(DIK_A))
-	//{
-	//	if (input->PushKey(DIK_D)) { angle += XMConvertToRadians(1.0f); }
-	//	else if (input->PushKey(DIK_A)) { angle -= XMConvertToRadians(1.0f); }
-
-	//	// angleラジアンだけY軸まわりに回転。半径は-100
-	//	eye.x = -100 * sinf(angle);
-	//	eye.z = -100 * cosf(angle);
-	//	matView = XMMatrixLookAtLH(XMLoadFloat3(&eye), XMLoadFloat3(&target), XMLoadFloat3(&up));
-	//}
-
-
- //  // X座標,Y座標を指定して表示
-	////debugText->Print("Hello,DirectX!!", 200, 100);
-	//// X座標,Y座標,縮尺を指定して表示
-	//debugText->Print("debugText", 200, 200, 2.0f);
-
-	//// GPU上のバッファに対応した仮想メモリを取得
-	//Vertex *vertMap = nullptr;
-	//result = vertBuff->Map(0, nullptr, (void **)&vertMap);
-	//// 全頂点に対して
-	//for (int i = 0; i < _countof(vertices); i++)
-	//{
-	//	vertMap[i] = vertices[i];   // 座標をコピー
-	//}
-	//// マップを解除
-	//vertBuff->Unmap(0, nullptr);
-
+	
 	// DirectX毎フレーム処理　ここまで
 
 }
@@ -121,30 +86,17 @@ void MasterGame::Draw()
 
 void MasterGame::Finalize()
 {
-	//3Dオブジェクト解放
-	delete object3d;
-	//3Dモデルを解放
-	delete model;
-	//デバッグテキスト解放
-	debugText->Finalize();
-	delete debugText;
-	//スプライトクラス解放
-	delete spriteCommon;
+	//スプライト個別開放
 	for (auto &sprite : sprites) {
 		delete sprite;
 	}
 	sprites.clear();
-	//オーディオクラス開放
-	audio->Finalize();
-	delete audio;
+	
+	//3Dオブジェクト解放
+	delete object3d;
+	//3Dモデルを解放
+	delete model;
 
-
-	//WindowsAPIの終了処理
-	winApp->Finalize();
-	//DirectX解放
-	delete dxCommon;
-	//WindowsAPIの解放
-	delete winApp;
-	//入力解放
-	delete input;
+	//基底クラスの終了処理
+	Framework::Finalize();
 }

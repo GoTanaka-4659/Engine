@@ -10,9 +10,10 @@ private:
 
 	std::vector<Sprite *>sprites;
 public:
-	void Initilize();
-	void Update();
+	void Initilize() override;
+	void Update()override;
 	void Draw();
-	void Finalize();
+	void Finalize()override;
 	
+
 };

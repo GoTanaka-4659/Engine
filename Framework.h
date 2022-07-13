@@ -26,7 +26,15 @@ protected:
 
 public: 
 	bool GetendFlag() { return endFlag; }
-
+	//開始
 	virtual void Initilize();
+	//終了
+	virtual void Finalize();
+	//更新
+	virtual void Update();
+	//描画
+	virtual void Draw() = 0;
+	//
+	void Run();
 };
 
